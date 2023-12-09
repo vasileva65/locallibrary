@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Местная Библиотека</title>{% endblock %}
+
+{% block content %}
+<h1>Домашняя страница Местной Библиотеки</h1>
+
+    <p>Добро пожаловать в <em>Местную Библиотеку</em>, очень простой веб-сайт на Django, разработанный в качестве
+    примера на Mozilla Developer Network.</p>
+
+
+<h2>Динамическое содержимое</h2>
+
+    <p>В библиотеке содержатся следующие записи:</p>
+    <ul>
+        <li><strong>Книги:</strong> {{ num_books }}</li>
+        <li><strong>Копии:</strong> {{ num_instances }}</li>
+        <li><strong>Доступные копии:</strong> {{ num_instances_available }}</li>
+        <li><strong>Авторы:</strong> {{ num_authors }}</li>
+        <li><strong>Количество жанров::</strong> {{ num_genres }}</li>
+        
+    </ul>
+    <p>Количество книг с ключевым словом "word" в заголовке: {{ num_books_with_keyword }}</p>
+
+
+{% endblock %}
