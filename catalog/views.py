@@ -10,8 +10,6 @@ def index(request):
     num_authors = Author.objects.count() 
     
     num_genres = Genre.objects.all().count()
-    #num_visits = request.session.get('num_visits', 1)
-    #request.session['num_visits'] = num_visits+1
 
     keyword = "word"  # Замените на свое ключевое слово
     num_books_with_keyword = Book.objects.filter(title__icontains=keyword).count()
