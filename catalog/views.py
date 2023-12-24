@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from catalog.models import Author, Book, BookInstance, Genre
 
+from django.views import generic
+
 def index(request):
 
     num_books = Book.objects.all().count()
@@ -25,3 +27,16 @@ def index(request):
             'num_books_with_keyword': num_books_with_keyword,
         },
     )
+
+class BookListView(generic.ListView):
+    model = Book
+    
+    def get_context_data(self, **kwargs):
+        context = super(BookListView, self).get_context_data(**kwargs)
+
+        context['some_data'] = 'This is just some data'
+
+        return context
+
+class BookDetailView(generic.DetailView):
+    model = Book
