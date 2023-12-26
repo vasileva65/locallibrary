@@ -1,6 +1,8 @@
 {% extends "base_generic.html" %}
 
-{% block title %}<title>Местная Библиотека</title>{% endblock %}
+{% block title %}
+<title>Местная Библиотека</title>
+{% endblock %}
 
 {% block content %}
 <h1>Домашняя страница Местной Библиотеки</h1>
@@ -19,9 +21,10 @@
         <li><strong>Авторы:</strong> {{ num_authors }}</li>
         <li><strong>Количество жанров:</strong> {{ num_genres }}</li>
         
+        
     </ul>
-    <p>Количество книг с ключевым словом "Coraline" в заголовке: {{ book_keyword_count }}</p>
-    <p>Количество жанров с ключевым словом "Детектив" в заголовке: {{ genre_keyword_count }}</p>
+    <p>Количество книг с ключевым словом <strong>{{ book }}</strong> в заголовке: {{ book_keyword_count }}</p>
+    <p>Количество жанров с ключевым словом <strong>{{ genre }}</strong> в заголовке: {{ genre_keyword_count }}</p>
 
     <p>
         Вы посетили эту страницу {{ num_visits }}

@@ -1,13 +1,11 @@
 from django.contrib import admin
 from catalog.models import Author, Book, BookInstance, Genre, Language
 
-#admin.site.register(Book)
-#admin.site.register(Author)
 admin.site.register(Genre)
-#admin.site.register(BookInstance)
 admin.site.register(Language)
 
 class BooksInline(admin.TabularInline):
+    extra = 0
     model = Book
 
 @admin.register(Author)
@@ -16,10 +14,8 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
     inlines = [BooksInline]
 
-# Register the admin class with the associated model
-#admin.site.register(Author, AuthorAdmin)
-
 class BooksInstanceInline(admin.TabularInline):
+    extra = 0
     model = BookInstance
 
 @admin.register(Book)
@@ -27,8 +23,6 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre', 'language')
 
     inlines = [BooksInstanceInline]
-
-#admin.site.register(Book, BookAdmin)
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):

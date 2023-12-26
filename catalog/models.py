@@ -17,6 +17,7 @@ class Book(models.Model):
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Character')
     genre = models.ManyToManyField(Genre, help_text="Select a genre fo this book")
     language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+    
     def __str__(self):
         return self.title
 
@@ -27,7 +28,7 @@ class Book(models.Model):
         return ', '.join(genre.name for genre in self.genre.all()[:3])
 
     display_genre.short_description = 'Genre'
-    
+
 class BookInstance(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4,
@@ -76,7 +77,7 @@ class Author(models.Model):
 class Language(models.Model):
 
     name = models.CharField(max_length=200, unique=True,
-                            help_text="Enter the book's natural language")
+                            help_text="Enter the book's language")
 
     def __str__(self):
         return self.name
