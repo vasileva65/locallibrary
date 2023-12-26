@@ -13,8 +13,13 @@ def index(request):
     
     num_genres = Genre.objects.all().count()
 
-    keyword = "word"  # Замените на свое ключевое слово
-    num_books_with_keyword = Book.objects.filter(title__icontains=keyword).count()
+    book = 'coraline'
+    book_keyword_count = Book.objects.filter(title__icontains=book).count()
+    genre = 'Детектив'
+    genre_keyword_count = Genre.objects.filter(name__icontains=genre).count()
+
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
     return render(
         request,
         'index.html',
@@ -24,7 +29,9 @@ def index(request):
             'num_instances_available': num_instances_available,
             'num_authors': num_authors,
             'num_genres': num_genres,
-            'num_books_with_keyword': num_books_with_keyword,
+            'num_visits': num_visits,
+            'book_keyword_count': book_keyword_count,
+            'genre_keyword_count': genre_keyword_count,
         },
     )
 
@@ -41,3 +48,10 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 5
+
+class AuthorDetailView(generic.DetailView):
+    model = Author

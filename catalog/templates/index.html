@@ -20,7 +20,16 @@
         <li><strong>Количество жанров:</strong> {{ num_genres }}</li>
         
     </ul>
-    <p>Количество книг с ключевым словом "word" в заголовке: {{ num_books_with_keyword }}</p>
+    <p>Количество книг с ключевым словом "Coraline" в заголовке: {{ book_keyword_count }}</p>
+    <p>Количество жанров с ключевым словом "Детектив" в заголовке: {{ genre_keyword_count }}</p>
 
+    <p>
+        Вы посетили эту страницу {{ num_visits }}
+        {% if num_visits == 1 or num_visits > 4 %} 
+        раз
+        {% else %} 
+        раза
+        {% endif %}
+    </p>
 
 {% endblock %}
